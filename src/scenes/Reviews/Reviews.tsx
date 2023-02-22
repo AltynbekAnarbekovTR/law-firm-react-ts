@@ -9,6 +9,7 @@ import {
 import Reasons from "@/assets/Reasons.jpg";
 import ReviewItem from "./ReviewsItem";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import { motion } from "framer-motion";
 
 const benefits: Array<BenefitType> = [
   {
@@ -49,9 +50,19 @@ const Reviews = ({ setSelectedPage }: Props) => {
       id={SelectedPage.Reviews}
       className="mx-auto min-h-full w-5/6 py-20"
     >
-      <div>
+      <motion.div onViewportEnter={() => setSelectedPage(SelectedPage.Reviews)}>
         {/* HEADER */}
-        <div className="md:my-5 md:w-3/5">
+        <motion.div
+          className="md:my-5 md:w-3/5"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.5 }}
+          variants={{
+            hidden: { opacity: 0, x: -50 },
+            visible: { opacity: 1, x: 0 },
+          }}
+        >
           <HText>НАДЕЖНЫЙ ПАРТНЁР</HText>
           <p className="my-5 text-sm">
             Принятие целей клиента, как своих собственных, один из основных
@@ -59,10 +70,16 @@ const Reviews = ({ setSelectedPage }: Props) => {
             развиваться вместе с нашими клиентами. Мы ценим отзывы наших
             клиентов, они делают нас лучше и мотивируют нас к новым победам.
           </p>
-        </div>
+        </motion.div>
 
         {/* BENEFITS */}
-        <div className="mt-5 items-center justify-between gap-8 md:flex">
+        <motion.div
+          className="mt-5 items-center justify-between gap-8 md:flex"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          variants={container}
+        >
           {benefits.map((benefit: BenefitType) => (
             <ReviewItem
               key={benefit.title}
@@ -72,7 +89,7 @@ const Reviews = ({ setSelectedPage }: Props) => {
               setSelectedPage={setSelectedPage}
             />
           ))}
-        </div>
+        </motion.div>
 
         {/* GRAPHICS AND DESCRIPTION */}
         <div className="mt-16 items-center justify-between gap-20 md:mt-28 md:flex">
@@ -92,27 +109,37 @@ const Reviews = ({ setSelectedPage }: Props) => {
             {/* TITLE */}
             <div className="relative">
               <div className=" before:absolute before:-top-20 before:-left-20 before:z-[1] before:max-w-[10px] before:content-abstractwaves">
-                <div>
+                <motion.div
+                  className="mt-5 items-center justify-between gap-8 md:flex"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.5 }}
+                  variants={container}
+                >
                   <HText>
                     ПОЧЕМУ <span className="text-primary-500">VERITAS</span>
                   </HText>
-                </div>
+                </motion.div>
               </div>
             </div>
 
             {/* DESCRIPT */}
-            <div className="">
+            <motion.div
+              className=""
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              variants={{
+                hidden: { opacity: 0, x: 50 },
+                visible: { opacity: 1, x: 0 },
+              }}
+            >
               <p className="my-5">
                 1. {"  "}Сосредоточенность на четкой специализации. Как
                 результат, наши специалисты регулярно отслеживают последние
                 изменения в законодательстве, а также судебную и
-                административную практику по вопросам регулирования бизнеса в
-                Кыргызстане. 3. Большой практический опыт работы наших ведущих
-                юристов и адвокатов непосредственно по своей специализации, а
-                также постоянная практика в качестве лекторов и тренеров. Как
-                результат, глубокое понимание как теоретических основ, так и
-                практических особенностей правового регулирования бизнеса в
-                Кыргызстане.
+                административную практику по вопросам регулирования.
               </p>
               <p className="mb-5">
                 2. Мы всегда практикуем комплексный подход к оказанию услуг,
@@ -125,10 +152,9 @@ const Reviews = ({ setSelectedPage }: Props) => {
                 адвокатов непосредственно по своей специализации, а также
                 постоянная практика в качестве лекторов и тренеров. Как
                 результат, глубокое понимание как теоретических основ, так и
-                практических особенностей правового регулирования бизнеса в
-                Кыргызстане.
+                практических особенностей правового регулирования бизнеса.
               </p>
-            </div>
+            </motion.div>
 
             {/* BUTTON */}
             <div className="relative mt-12">
@@ -140,7 +166,7 @@ const Reviews = ({ setSelectedPage }: Props) => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

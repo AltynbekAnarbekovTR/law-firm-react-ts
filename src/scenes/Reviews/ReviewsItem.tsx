@@ -1,5 +1,6 @@
 import { SelectedPage } from "@/types/types";
 import AnchorLink from "react-anchor-link-smooth-scroll";
+import { motion } from "framer-motion";
 
 const childVariant = {
   hidden: { opacity: 0, scale: 0.9 },
@@ -15,7 +16,10 @@ type Props = {
 
 const ReviewsItem = ({ icon, title, description, setSelectedPage }: Props) => {
   return (
-    <div className="mt-5 flex flex-col justify-between rounded-md border-2 border-gray-100 px-5 py-10 text-center md:min-h-[480px]">
+    <motion.div
+      variants={childVariant}
+      className="mt-5 flex flex-col justify-between rounded-md border-2 border-gray-100 px-5 py-10 text-center md:min-h-[480px]"
+    >
       <div>
         <div className="mb-4 flex justify-center">
           <div className="rounded-full border-2 border-gray-100 bg-primary-100 p-4">
@@ -33,7 +37,7 @@ const ReviewsItem = ({ icon, title, description, setSelectedPage }: Props) => {
       >
         <p>Узнать больше</p>
       </AnchorLink>
-    </div>
+    </motion.div>
   );
 };
 
